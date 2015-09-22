@@ -1,18 +1,17 @@
 import {Component, View, bootstrap} from 'angular2/angular2';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_BINDINGS} from 'angular2/router';
-// import {HTTP_BINDINGS} from 'http/http';
+import {RouteConfig, ROUTER_BINDINGS, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Home} from './components/home/home';
-import {About} from './components/about/about';
-import {NamesList} from './services/NameList';
+import {Login} from './components/login/login';
+import {Register} from './components/register/register';
 
 @Component({
-  selector: 'app',
-  viewBindings: [NamesList]
+  selector: 'app'
 })
 @RouteConfig([
-  { path: '/', component: Home, as: 'home' },
-  { path: '/about', component: About, as: 'about' }
+  { path: '/login', component: Login, as: 'login' },
+  { path: '/home', component: Home, as: 'home' },
+  { path: '/register', component: Register, as: 'register'}
 ])
 @View({
   templateUrl: './app.html',
@@ -20,5 +19,6 @@ import {NamesList} from './services/NameList';
   directives: [ROUTER_DIRECTIVES]
 })
 class App {}
+
 
 bootstrap(App, [ROUTER_BINDINGS]);

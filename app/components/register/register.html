@@ -1,0 +1,21 @@
+<section title="Register">
+	<form name="RegisterForm" [ng-form-model]="RegisterForm"
+          (submit)="Register(RegisterForm.value)">
+		<fieldset name="RegisterForm">
+			<legend>
+				<h2>Please Register</h2>
+			</legend>
+			<label for="firstName">First Name</label>
+			<input id="firstName" type="text" placeholder="First Name" [ng-form-control]="RegisterForm.controls['firstName']" required/>
+			<label for="lastName">First Name</label>
+			<input id="lastName" type="text" placeholder="Last Name" [ng-form-control]="RegisterForm.controls['lastName']" required/>
+			<label for="email">E-Mail</label>
+			<input id="email" type="email" placeholder="E-mail" [ng-form-control]="RegisterForm.controls['email']" required/>
+			<label for="password">Password</label>
+			<input id="password" type="password" placeholder="Password" [ng-form-control]="RegisterForm.controls['password']" required/>
+			<label for="confirmPassword">Confirm Password</label>
+			<input id="confirmPassword" type="password" placeholder="Confirm password" [ng-form-control]="RegisterForm.controls['confirmPassword']" required/>
+			<button type="submit">Submit</button>
+		</fieldset>
+	</form>
+</section>

@@ -1,0 +1,15 @@
+<section title="Login">
+	<form name="LoginForm" [ng-form-model]="LoginForm"
+          (submit)="SubmitLogin(LoginForm.value)">
+		<fieldset name="LoginForm">
+			<legend>
+				<h2>Please Login</h2>
+			</legend>
+			<label for="email">E-Mail</label>
+			<input id="email" type="email" placeholder="E-mail" [ng-form-control]="LoginForm.controls['email']"/>
+			<label for="password">Password</label>
+			<input id="password" type="password" placeholder="Password" [ng-form-control]="LoginForm.controls['password']"/>
+			<button type="submit">Submit</button>
+		</fieldset>
+	</form>
+</section>
