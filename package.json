@@ -4,7 +4,7 @@
   "description": "An AngularJS based web app, to use the open-kudos api and provide the functionality of giving out kudos",
   "main": "index.js",
   "scripts": {
-    "test": "echo test"
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,9 @@
     "url": "https://github.com/open-kudos/open-kudos-web/issues"
   },
   "homepage": "https://github.com/open-kudos/open-kudos-web#readme",
-  "scripts": {
-    "postinstall" : "bower install"
+  "dependencies": {
+    "angular-mocks": "^1.4.7",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10"
   }
 }
