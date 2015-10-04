@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/open-kudos/open-kudos-web#readme",
   "dependencies": {
+    "angular": "^1.4.7",
     "angular-mocks": "^1.4.7",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.10"
