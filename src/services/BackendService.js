@@ -7,7 +7,7 @@ angular.module("kudos")
     "$q"
   ]
 
-  function BackendService($http) {
+  function BackendService($http, $q) {
 
     var service;
     service = {
@@ -15,7 +15,11 @@ angular.module("kudos")
       logout: Logout,
       register: Register,
       reset: ResetPassword,
-      confirm: ConfirmRegistration
+      confirm: ConfirmRegistration,
+      kudos: {
+        send: sendKudos,
+        incoming: getIncomingKudos
+      }
     };
     return service;
 
@@ -26,17 +30,16 @@ angular.module("kudos")
     }
 
     function Login(requestData) {
-        config().then(function(response) {
-          return $http.post(response.data + "/login?email=" + requestData.email +"&password=" + requestData.password)
-          .then(function(response) {
-            return response.data;
+        return config().then(function(server) {
+           $http.post(server.data + "/login", requestData).then(function(response) {
+             return response.data;
           });
         });
       }
 
     function Logout() {
-      config().then(function(response) {
-        return $http.get(response.data + "/logout").then(function(response) {
+      return config().then(function(server) {
+         $http.get(server.data + "/logout").then(function(response) {
           return response.data;
         });
       });
@@ -44,33 +47,51 @@ angular.module("kudos")
 
     function Register(requestData) {
       if(requestData.password === requestData.confirmPassword) {
-        config().then(function(response) {
-          return $http.post(response.data +
-            "/register?email=" + requestData.email +
-            "&password=" + requestData.password +
-            "&confirmPassword=" + requestData.confirmPassword +
-            "&name=" + requestData.name +
-            "&surname=" + requestData.surname).then(function(response) {
+        return config().then(function(server) {
+           $http.post(server.data +
+            "/register", requestData).then(function(response) {
               return response.data;
             });
         });
       } else {
         var error = {
-          message: "Passwords do not match"
+          message: "NO_MATCH_PASSWORD"
         }
           return error;
       }
     }
 
     function ResetPassword(requestData) {
-      config().then(function(response) {
-        $http.post(response.data + "/reset?email=" + requestData.email)
+      return config().then(function(server) {
+        $http.post(server.data + "/reset", requestData)
       });
     }
 
     function ConfirmRegistration(requestData) {
-      config().then(function(response) {
-        $http.post(response.data + "/confirm?id=" + requestData.id)
+      return config().then(function(server) {
+        $http.post(server.data + "/confirm", requestData)
       });
     }
+
+    function sendKudos(requestData) {
+      if(angular.isDefined(requestData.amount) && requestData.amount > 0) {
+        return config().then(function(server) {
+          $http.post(server.data + "/kudos/send", requestData)
+        });
+      } else {
+        var error = {
+          message: "INVALID_AMOUNT"
+        }
+        return error;
+      }
+    }
+
+    function getIncomingKudos() {
+      return config().then(function(server) {
+        $http.get(server.data + "/kudos/incoming").then(function(response) {
+          return response.data
+        });
+      })
+    }
+
   };
