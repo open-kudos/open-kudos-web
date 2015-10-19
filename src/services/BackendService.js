@@ -17,6 +17,12 @@ angular.module("kudos")
       register: Register,
       reset: ResetPassword,
       confirm: ConfirmRegistration,
+      user: {
+        home: getHomeInfo,
+        disable: disableUser,
+        update: updateUserInfo,
+        list: listUsers
+      },
       kudos: {
         send: sendKudos,
         incoming: getIncomingKudos,
@@ -99,6 +105,30 @@ angular.module("kudos")
       return $http.get(SERVER.ip + "/kudos/received").then(function(response) {
         return response.data;
       });
+    }
+
+    function getHomeInfo() {
+      return $http.get(SERVER.ip + "/user/home").then(function(response) {
+        return response.data;
+      })
+    }
+
+    function disableUser() {
+      return $http.get(SERVER.ip + "/user/disable").then(function(response) {
+        return response.data;
+      })
+    }
+
+    function updateUserInfo(userInfo) {
+      return $http.post(SERVER.ip + "/user/update", userInfo).then(function(response) {
+        return response.data;
+      })
+    }
+
+    function listUsers(searchFilter) {
+      return $http.post(SERVER.ip + "/user/list", searchFilter).then(function(response) {
+        return response.data;
+      })
     }
 
   };

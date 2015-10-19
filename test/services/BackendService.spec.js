@@ -164,6 +164,48 @@ describe("BackendService", function() {
           httpBackend.flush();
         });
       });
+    });
+    describe("--user", function() {
+      describe("#home", function() {
+        it("should be defined", function() {
+          expect(angular.isFunction(BackendService.user.home)).toBeTruthy();
+        });
+        it("should call backend to get the home page info for a user", function() {
+          httpBackend.expectGET("http://127.0.0.1:8080/user/home").respond("");
+          BackendService.user.home();
+          httpBackend.flush();
+        });
+      });
+      describe("#disable", function() {
+        it("should be defined", function() {
+          expect(angular.isFunction(BackendService.user.disable)).toBeTruthy();
+        });
+        it("should call backend to disable a user", function() {
+          httpBackend.expectGET("http://127.0.0.1:8080/user/disable").respond("");
+          BackendService.user.disable();
+          httpBackend.flush();
+        });
+      });
+      describe("#update", function() {
+        it("should be defined", function() {
+          expect(angular.isFunction(BackendService.user.update)).toBeTruthy();
+        });
+        it("should call backend to update the user info", function() {
+          httpBackend.expectPOST("http://127.0.0.1:8080/user/update").respond("");
+          BackendService.user.update(requestData);
+          httpBackend.flush();
+        });
+      });
+      describe("#list", function() {
+        it("should be defined", function() {
+          expect(angular.isFunction(BackendService.user.list)).toBeTruthy();
+        });
+        it("should call backend to fetch the list of users", function() {
+          httpBackend.expectPOST("http://127.0.0.1:8080/user/list").respond("");
+          BackendService.user.list(requestData);
+          httpBackend.flush();
+        })
+      })
     })
 
 
