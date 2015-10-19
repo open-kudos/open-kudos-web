@@ -19,7 +19,10 @@ angular.module("kudos")
       confirm: ConfirmRegistration,
       kudos: {
         send: sendKudos,
-        incoming: getIncomingKudos
+        incoming: getIncomingKudos,
+        outgoing: getOutgoingKudos,
+        remaining: getRemainingKudos,
+        received: getReceivedKudos
       }
     };
     return service;
@@ -78,6 +81,24 @@ angular.module("kudos")
         return $http.get(SERVER.ip + "/kudos/incoming").then(function(response) {
           return response.data;
         });
+    }
+
+    function getOutgoingKudos() {
+        return $http.get(SERVER.ip + "/kudos/outgoing").then(function(response) {
+          return response.data;
+        });
+    }
+
+    function getRemainingKudos() {
+      return $http.get(SERVER.ip + "/kudos/remaining").then(function(response) {
+        return response.data;
+      });
+    }
+
+    function getReceivedKudos() {
+      return $http.get(SERVER.ip + "/kudos/received").then(function(response) {
+        return response.data;
+      });
     }
 
   };

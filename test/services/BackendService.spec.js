@@ -134,6 +134,36 @@ describe("BackendService", function() {
           httpBackend.flush();
         });
       });
+      describe("#outgoing", function() {
+        it("should be defined", function() {
+          expect(angular.isFunction(BackendService.kudos.outgoing)).toBeTruthy();
+        })
+        it("should call backend to get outgoing kudos", function() {
+          httpBackend.expectGET("http://127.0.0.1:8080/kudos/outgoing").respond("");
+          BackendService.kudos.outgoing();
+          httpBackend.flush();
+        });
+      });
+      describe("#remaining", function() {
+        it("should be defined", function() {
+          expect(angular.isFunction(BackendService.kudos.remaining)).toBeTruthy();
+        })
+        it("should call backend to get remaining kudos", function() {
+          httpBackend.expectGET("http://127.0.0.1:8080/kudos/remaining").respond("");
+          BackendService.kudos.remaining();
+          httpBackend.flush();
+        });
+      });
+      describe("#received", function() {
+        it("should be defined", function() {
+          expect(angular.isFunction(BackendService.kudos.received)).toBeTruthy();
+        })
+        it("should call backend to get received kudos", function() {
+          httpBackend.expectGET("http://127.0.0.1:8080/kudos/received").respond("");
+          BackendService.kudos.received();
+          httpBackend.flush();
+        });
+      });
     })
 
 
