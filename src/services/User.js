@@ -15,6 +15,7 @@ angular.module("kudos")
       list: listUsers
     }
     return user;
+    
 
     function getHomeInfo() {
       return $http.get(SERVER.ip + "/user/home").then(function(response) {

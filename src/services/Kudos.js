@@ -16,7 +16,7 @@ angular.module("kudos")
       received: getReceivedKudos
     }
     return kudos;
-
+    
     function sendKudos(requestData) {
       if(angular.isDefined(requestData.amount) && requestData.amount > 0) {
           return $http.post(SERVER.ip + "/kudos/send", requestData).then(function(response) {
