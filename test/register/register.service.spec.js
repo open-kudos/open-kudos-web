@@ -35,7 +35,7 @@ describe("Register Service", function() {
   it("should be defined", function() {
       expect(RegisterService).toBeDefined();
   });
-  describe("#login", function() {
+  describe("#register", function() {
     beforeEach(function() {
       passPromise = true;
     })
