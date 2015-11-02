@@ -1,0 +1,17 @@
+<form>
+  <fieldset>
+    <legend>
+      Register
+    </legend>
+    <label for="register.name">First name</label>
+    <input type="text" name="register.name" autofocus="true" value="" ng-model="register.name" required/>
+    <label for="register.surname">Last name</label>
+    <input type="text" name="register.surname" value="" ng-model="register.surname" required/>
+    <label for="register.email">E-mail</label>
+    <input type="email" name="register.email" placeholder="user@provider.com" value="" ng-model="register.email" required/>
+    <label for="register.password">Password</label>
+    <input type="password" name="register.password" placeholder="Password" value="" ng-model="register.password" autocomplete="off" required/>
+    <label for="register.confirmPassword">Repeat password</label>
+    <input type="confirmPassword" name="register.confirmPassword" placeholder="Password" value="" ng-model="register.confirmPassword" autocomplete="off" required/>
+  </fieldset>
+</form>

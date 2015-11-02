@@ -15,13 +15,11 @@ function RegisterService(authBackend, q) {
 
   function registerUser(registerInfo) {
     var deferred = q.defer();
-
     authBackend.register(registerInfo).then(function(response) {
       deferred.resolve(response);
     }).catch(function(error) {
       deferred.reject(error);
     });
-
     return deferred.promise;
   }
 }
